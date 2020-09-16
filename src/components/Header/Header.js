@@ -11,6 +11,7 @@ const HeaderStyled=styled.div`
     position:sticky;
     top:0;
     z-index:100;
+    
 `
 function Header() {
     return (

@@ -8,7 +8,11 @@ const InputStyled=styled.div`
     flex:1;
     border-radius:24px;
     .input{
-        
+        height: 12px;
+        padding:10px;
+        border:none;
+        width:100%;
+
     }
     .icon{
         padding:5px;

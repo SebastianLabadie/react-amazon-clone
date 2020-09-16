@@ -5,6 +5,7 @@ img{
     width:100px;
 object-fit:contain;
 margin:20px 20px 0 20px;
+
 }
 `
 function Brand() {
