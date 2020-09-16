@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import { useStateValue } from "../StateProvider";
 
 const NavStyled = styled.div`
   display: flex;
@@ -21,17 +23,19 @@ const NavStyled = styled.div`
     font-weight: 800;
   }
 
-  .basket{
-      display:flex;
-      align-items:center;
-      color:#fff;
-      .basket-count{
-          margin:0 10px;
-      }
+  .basket {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    .basket-count {
+      margin: 0 10px;
+    }
   }
 `;
 
 function Nav() {
+  const [{ basket }, dispatch] = useStateValue();
+
   return (
     <NavStyled>
       <div className="option">
@@ -46,10 +50,12 @@ function Nav() {
         <span className="line-one">Your</span>
         <span className="line-two">Prime</span>
       </div>
-      <div className="basket">
-        <ShoppingBasketIcon />
-        <span className="line-two basket-count">0</span>
-      </div>
+      <Link to="/checkout">
+        <div className="basket">
+          <ShoppingBasketIcon />
+          <span className="line-two basket-count">{basket?.length}</span>
+        </div>
+      </Link>
     </NavStyled>
   );
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useStateValue } from "../StateProvider";
+
 const ProductStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,7 +43,22 @@ const ProductStyled = styled.div`
     margin-bottom: 15px;
   }
 `;
-function Product({ title, image, price, rating }) {
+function Product({ id,title, image, price, rating }) {
+  const [{ basket }, dispatch] = useStateValue();
+
+  const handleClick=()=>{
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
+      },
+    });
+  }
+
   return (
     <ProductStyled>
       <div className="product__info">
@@ -53,15 +70,15 @@ function Product({ title, image, price, rating }) {
         <div className="product__rating">
           {Array(rating)
             .fill()
-            .map((star) => (
-              <p>🌟</p>
+            .map((star,i) => (
+              <p key={i}>🌟</p>
             ))}
         </div>
       </div>
 
       <img className="product__img" src={image} alt="homeimg" />
 
-      <button className="product__btn">Add to basket</button>
+      <button className="product__btn" onClick={handleClick}>Add to basket</button>
     </ProductStyled>
   );
 }
