@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../StateProvider";
+import { auth } from "../../firebase";
 
 const NavStyled = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ function Nav() {
     <NavStyled>
       <div className="option">
         <span className="line-one">Hello</span>
-        <span className="line-two">Sign In</span>
+        <span className="line-two" >Sign In</span>
       </div>
       <div className="option">
         <span className="line-one">Returns</span>
