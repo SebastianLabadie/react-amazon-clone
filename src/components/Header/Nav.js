@@ -35,14 +35,26 @@ const NavStyled = styled.div`
 `;
 
 function Nav() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  const handleAuthenticaton = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
 
   return (
     <NavStyled>
-      <div className="option">
-        <span className="line-one">Hello</span>
-        <span className="line-two" >Sign In</span>
-      </div>
+      <Link to={!user && "/login"}>
+        <div onClick={handleAuthenticaton} className="option">
+          <span className="line-one">
+            Hello {!user ? "Guest" : user.email}
+          </span>
+          <span className="line-two">
+            {user ? "Sign Out" : "Sign In"}
+          </span>
+        </div>
+      </Link>
       <div className="option">
         <span className="line-one">Returns</span>
         <span className="line-two">& Orders</span>
